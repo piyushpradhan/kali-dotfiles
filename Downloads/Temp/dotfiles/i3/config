@@ -53,10 +53,11 @@ bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOU
 # NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
 # it fails to get colors from Xresources.
 set_from_resource $fg i3wm.color7 #ffffff
-set_from_resource $bg i3wm.color2 #000000
+set_from_resource $bg i3wm.color0 #000000
+set_from_resource $border i3wm.color9 #a9a39a
 
 # class                 border  backgr. text indicator child_border
-client.focused          $bg     $bg     $fg  $bg       $bg
+client.focused          $border    $bg     $fg  $bg       $border
 # client.focused_inactive $bg     $bg     $fg  $bg       $bg
 # client.unfocused        $bg     $bg     $fg  $bg       $bg
 # client.urgent           $bg     $bg     $fg  $bg       $bg
@@ -75,7 +76,7 @@ set $right l
 floating_modifier Mod4
 
 # start a terminal
-bindsym Mod4+Return exec qterminal
+bindsym Mod4+Return exec "alacritty &"
 
 # kill focused window
 bindsym Mod4+Shift+c kill
@@ -89,6 +90,7 @@ bindsym Mod4+Shift+Return exec "rofi -modi drun,run -show drun -theme android_no
 # bindsym Mod4+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
+bindsym Mod1+Tab focus left
 bindsym Mod4+$left focus left
 bindsym Mod4+$down focus down
 bindsym Mod4+$up focus up
@@ -171,8 +173,8 @@ bindsym Mod4+9 workspace number $ws9
 bindsym Mod4+0 workspace number $ws10
 
 # Switch workspaces 
-bindsym Mod1+Tab workspace next
-bindsym Mod1+Shift+Tab workspace prev
+bindsym Mod4+Tab workspace next
+bindsym Mod4+Shift+Tab workspace prev
 
 # move focused container to workspace
 bindsym Mod4+Shift+1 move container to workspace number $ws1
@@ -277,4 +279,6 @@ exec nitrogen --restore
 exec_always --no-startup-id $HOME/.config/polybar/scripts/launch.sh
 
 for_window [class="qterminal"] floating enable
+for_window [class="Alacritty"] floating enable
 for_window [class="Firefox"] floating enable
+for_window [class="Sublime_text"] floating enable
